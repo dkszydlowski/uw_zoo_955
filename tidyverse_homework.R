@@ -28,6 +28,8 @@ iris_area <- mutate(
 # plot petal area ~ length - is the relationship linear? Why?
 ggplot(data = iris_area, aes(x = Petal.Length, y = petal.area)) + geom_point()
 
+#It is not linear 
+
 # 3. summarize
 # compute the mean petal length of each species dataset from above
 setosa_mean <- mean(setosa$Petal.Length)
