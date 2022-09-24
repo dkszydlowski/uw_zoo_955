@@ -28,13 +28,14 @@ iris_area <- mutate(
 # plot petal area ~ length - is the relationship linear? Why?
 ggplot(data = iris_area, aes(x = Petal.Length, y = petal.area)) + geom_point()
 
-#It is not linear 
+#It is not linear, likely because a petal is not shaped like a rectangle so there is not a linear relationship
+# between petal length and area. It is allometric
 
 # 3. summarize
 # compute the mean petal length of each species dataset from above
-setosa_mean <- mean(setosa$Petal.Length)
-versicolor_mean <- mean(versicolor$Petal.Length)
-virginica_mean <- mean(virginica$Petal.Length)
+setosa_mean <- mean(setosa$Petal.Length) #1.462
+versicolor_mean <- mean(versicolor$Petal.Length) #4.26
+virginica_mean <- mean(virginica$Petal.Length) #5.552
 
 # now do it using summarize
 setosa_summarize_mean <- summarize(setosa, mean.petal.length = mean(Petal.Length))
@@ -48,8 +49,15 @@ iris_means <- summarize(group_by(iris, Species), mn.petal.length = mean(Petal.Le
 # 5. pipes
 # the above can get unwieldy - rearrange iris_means from 4 using pipes
 
+
+
 ## On Your Own #1 
 # now compute mean petal area for each species - how would you go about it using dplyr
+
+
+iris_mean_area <- iris %>% 
+  summarize(group_by(Species), mn.petal.area = mean(Petal.area))
+
 # Q: What is the mean petal area for each species
 
 # 6. arrange/select/count
